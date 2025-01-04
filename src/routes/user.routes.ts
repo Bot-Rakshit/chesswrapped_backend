@@ -170,6 +170,7 @@ router.get('/test-gemini', authMiddleware, async (req, res) => {
     });
   }
 });
+*/
 
 export default router;
-*/
+
