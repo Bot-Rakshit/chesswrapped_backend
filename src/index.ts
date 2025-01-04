@@ -30,6 +30,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 });
 
 // Start server
-app.listen(config.port, () => {
-  console.log(`Server is running on port ${config.port}`);
+const port = config.port;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

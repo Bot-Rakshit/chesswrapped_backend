@@ -1,0 +1,100 @@
+{
+  "success": true,
+  "data": {
+    "summary": {
+      "totalGames": 301,
+      "overallWinRate": 36,
+      "formatBreakdown": {
+        "rapid": { "games": 94, "winRate": 43 },
+        "blitz": { "games": 153, "winRate": 33 },
+        "bullet": { "games": 54, "winRate": 33 }
+      },
+      "currentRatings": {
+        "rapid": 1677,
+        "blitz": 1236,
+        "bullet": 1478
+      }
+    },
+    "streaks": {
+      "longestWinStreak": {
+        "count": 3,
+        "startDate": "2024-12-20",
+        "endDate": "2024-12-20",
+        "format": "rapid"
+      },
+      "longestPlayStreak": {
+        "days": 26,
+        "startDate": "2024-12-05",
+        "endDate": "2024-12-30",
+        "gamesPlayed": 136
+      }
+    },
+    "openings": {
+      "mostPlayed": {
+        "asWhite": [
+          {
+            "name": "B21 - Sicilian Defense Smith Morra Gambit",
+            "games": 5,
+            "winRate": 80
+          },
+          {
+            "name": "D02 - Queens Pawn Opening Zukertort",
+            "games": 3,
+            "winRate": 33
+          }
+        ],
+        "asBlack": [
+          {
+            "name": "B20 - Sicilian Defense Bowdler Attack",
+            "games": 9,
+            "winRate": 44
+          },
+          {
+            "name": "B30 - Sicilian Defense Old Sicilian",
+            "games": 6,
+            "winRate": 33
+          }
+        ]
+      },
+      "bestWinRate": {
+        "minGames": 3,
+        "asWhite": [
+          {
+            "name": "B21 - Sicilian Defense Smith Morra Gambit",
+            "games": 5,
+            "winRate": 80
+          }
+        ],
+        "asBlack": [
+          {
+            "name": "B33 - Sicilian Defense Open",
+            "games": 5,
+            "winRate": 60
+          }
+        ]
+      }
+    },
+    "performance": {
+      "bestTimeToPlay": "evening",
+      "bestDayToPlay": "wednesday",
+      "averageGameDuration": 237,
+      "bestWins": {
+        "rapid": {
+          "opponent": "ChachoKarpov",
+          "opponentRating": 1806,
+          "date": "2024-10-29"
+        },
+        "blitz": {
+          "opponent": "Belousov_Aleksandr",
+          "opponentRating": 1794,
+          "date": "2024-11-01"
+        },
+        "bullet": {
+          "opponent": "Scacchipadova",
+          "opponentRating": 1858,
+          "date": "2024-10-29"
+        }
+      }
+    }
+  }
+} 

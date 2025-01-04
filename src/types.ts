@@ -59,3 +59,37 @@ export interface ApiResponse<T> {
   data?: T;
   error?: string;
 }
+
+export interface PlayerStats {
+  totalGames: {
+    rapid: number;
+    blitz: number;
+    bullet: number;
+    total: number;
+  };
+  currentRatings: {
+    rapid: number | null;
+    blitz: number | null;
+    bullet: number | null;
+  };
+  yearlyProgress: {
+    rapid: number;
+    blitz: number;
+    bullet: number;
+  };
+}
+
+export interface GameArchive {
+  games: Array<{
+    end_time: number;
+    time_class: string;
+    white: {
+      username: string;
+      rating: number;
+    };
+    black: {
+      username: string;
+      rating: number;
+    };
+  }>;
+}

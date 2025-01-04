@@ -5,6 +5,15 @@ import { ApiResponse, UserProfile, RatingHistory } from '../types';
 const chessService = new ChessService();
 
 export class UserController {
+  private handleError(error: unknown, res: Response) {
+    const response: ApiResponse<never> = {
+      success: false,
+      error: error instanceof Error ? error.message : 'An error occurred'
+    };
+    
+    res.status(error instanceof Error && error.message.includes('User not found') ? 404 : 500).json(response);
+  }
+
   async verifyUser(req: Request, res: Response) {
     try {
       const { username } = req.params;
@@ -25,19 +34,13 @@ export class UserController {
       
       res.json(response);
     } catch (error) {
-      const response: ApiResponse<never> = {
-        success: false,
-        error: error instanceof Error ? error.message : 'An error occurred'
-      };
-      
-      res.status(error instanceof Error && error.message === 'User not found' ? 404 : 500).json(response);
+      this.handleError(error, res);
     }
   }
 
-  async getRatingHistory(req: Request, res: Response) {
+  async getRatingStats(req: Request, res: Response) {
     try {
       const { username } = req.params;
-      const { type } = req.query;
       
       if (!username) {
         return res.status(400).json({
@@ -46,28 +49,40 @@ export class UserController {
         });
       }
 
-      if (!type || !['rapid', 'blitz', 'bullet'].includes(type as string)) {
-        return res.status(400).json({
-          success: false,
-          error: 'Valid game type (rapid, blitz, or bullet) is required'
-        });
-      }
-
-      const history = await chessService.getRatingHistory(username, type as 'rapid' | 'blitz' | 'bullet');
+      const ratings = await chessService.getChessWrappedRatings(username);
       
-      const response: ApiResponse<RatingHistory[]> = {
+      const response: ApiResponse<typeof ratings> = {
         success: true,
-        data: history
+        data: ratings
       };
       
       res.json(response);
     } catch (error) {
-      const response: ApiResponse<never> = {
-        success: false,
-        error: error instanceof Error ? error.message : 'An error occurred'
+      this.handleError(error, res);
+    }
+  }
+
+  async getWrappedStats(req: Request, res: Response) {
+    try {
+      const { username } = req.params;
+      
+      if (!username) {
+        return res.status(400).json({
+          success: false,
+          error: 'Username is required'
+        });
+      }
+
+      const wrapped = await chessService.getChessWrapped(username);
+      
+      const response: ApiResponse<typeof wrapped> = {
+        success: true,
+        data: wrapped
       };
       
-      res.status(error instanceof Error && error.message.includes('User not found') ? 404 : 500).json(response);
+      res.json(response);
+    } catch (error) {
+      this.handleError(error, res);
     }
   }
 }
