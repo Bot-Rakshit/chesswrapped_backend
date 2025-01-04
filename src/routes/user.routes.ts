@@ -1,17 +1,16 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/user.controller';
 import { authMiddleware } from '../middleware/auth.middleware';
-import { GeminiService } from '../services/gemini.service';
 
 const router = Router();
 const userController = new UserController();
-const geminiService = new GeminiService();
+
 
 router.get('/verify/:username', userController.verifyUser.bind(userController));
 router.get('/ratings/:username', authMiddleware, userController.getRatingStats.bind(userController));
 router.get('/wrapped/:username', authMiddleware, userController.getWrappedStats.bind(userController));
 
-// Test endpoint for Gemini
+/*// Test endpoint for Gemini
 router.get('/test-gemini', authMiddleware, async (req, res) => {
   try {
     const result = await geminiService.generateQuirkyComments({
@@ -173,4 +172,4 @@ router.get('/test-gemini', authMiddleware, async (req, res) => {
 });
 
 export default router;
-
+*/
